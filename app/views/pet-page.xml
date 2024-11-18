@@ -1,0 +1,68 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="My Pet" class="action-bar">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" tap="onBackTap" />
+    </ActionBar>
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Label text="Select Your 4 Paws Friend (Optional)" class="font-semibold mb-2" />
+            <FlexboxLayout class="mb-4">
+                <Button text="Dog" 
+                        tap="{{ onPetTypeSelect }}" 
+                        data-type="dog"
+                        class="{{ petType === 'dog' ? 'selected-button' : 'btn-secondary' }} m-1" />
+                <Button text="Cat" 
+                        tap="{{ onPetTypeSelect }}" 
+                        data-type="cat"
+                        class="{{ petType === 'cat' ? 'selected-button' : 'btn-secondary' }} m-1" />
+            </FlexboxLayout>
+            
+            <Label text="Pet's Name (Optional)" class="font-semibold mb-2" />
+            <TextField text="{{ petName }}" 
+                      hint="Enter pet's name" 
+                      class="input-field" />
+            
+            <Label text="Breed (Optional)" class="font-semibold mb-2 mt-4" />
+            <TextField text="{{ breed }}" 
+                      hint="Enter breed" 
+                      class="input-field" />
+            
+            <Label text="Age (Optional)" class="font-semibold mb-2 mt-4" />
+            <TextField text="{{ age }}"
+                      hint="Enter age"
+                      keyboardType="number"
+                      class="input-field" />
+            
+            <Label text="Sex (Optional)" class="font-semibold mb-2 mt-4" />
+            <FlexboxLayout class="mb-4">
+                <Button text="Male"
+                        tap="{{ onSexSelect }}"
+                        data-sex="male"
+                        class="{{ selectedSex === 'male' ? 'selected-button' : 'btn-secondary' }} m-1" />
+                <Button text="Female"
+                        tap="{{ onSexSelect }}"
+                        data-sex="female"
+                        class="{{ selectedSex === 'female' ? 'selected-button' : 'btn-secondary' }} m-1" />
+            </FlexboxLayout>
+            
+            <Label text="Temperament (Optional)" class="font-semibold mb-2 mt-4" />
+            <ScrollView orientation="horizontal" class="mb-4">
+                <StackLayout orientation="horizontal">
+                    <Repeater items="{{ temperaments }}">
+                        <Repeater.itemTemplate>
+                            <Button text="{{ label }}"
+                                    tap="{{ $parents['Page'].onTemperamentSelect }}"
+                                    data-temperament="{{ id }}"
+                                    class="{{ selected ? 'selected-button' : 'btn-secondary' }} m-1" />
+                        </Repeater.itemTemplate>
+                    </Repeater>
+                </StackLayout>
+            </ScrollView>
+            
+            <Button text="Continue to Services" 
+                    tap="{{ onContinue }}"
+                    class="btn-primary"
+                    marginTop="20" />
+        </StackLayout>
+    </ScrollView>
+</Page>

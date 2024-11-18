@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.action-bar {
+    background-color: #7C3AED;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #7C3AED;
+    color: white;
+    padding: 12 24;
+    border-radius: 8;
+}
+
+.btn-secondary {
+    background-color: #E5E7EB;
+    color: #374151;
+    padding: 12 24;
+    border-radius: 8;
+    min-width: 100;
+    margin-bottom: 8;
+}
+
+.selected-button {
+    background-color: #7C3AED;
+    color: white;
+}
+
+.input-field {
+    border-width: 1;
+    border-color: #E5E7EB;
+    border-radius: 8;
+    padding: 12;
+    margin: 8 0;
+    background-color: white;
+}
+
+.search-container {
+    margin-bottom: 16;
+    z-index: 1000;
+}
+
+.dropdown {
+    border-width: 1;
+    border-color: #E5E7EB;
+    border-radius: 8;
+    background-color: white;
+    margin-top: -8;
+    elevation: 3;
+    z-index: 999;
+}
+
+.dropdown-item {
+    padding: 12 16;
+}
+
+.dropdown-item:highlighted {
+    background-color: #F3F4F6;
+}
+
+.selected-location {
+    background-color: #F3F4F6;
+    border-radius: 8;
+    padding: 16;
+    margin: 16 0;
+}
+
+.selected-text {
+    color: #7C3AED;
+    font-weight: bold;
+}
+
+.service-item {
+    background-color: white;
+    border-radius: 8;
+    border-width: 1;
+    border-color: #E5E7EB;
+}
+
+.checkbox-label {
+    font-size: 24;
+    width: 32;
+    height: 32;
+    text-align: center;
+    vertical-align: middle;
+    border-width: 1;
+    border-color: #E5E7EB;
+    border-radius: 4;
+    margin: 4;
+}
+
+.checkbox-label.selected-text {
+    background-color: #7C3AED;
+    color: white;
+    border-color: #7C3AED;
+}
+
+.page-background {
+    background-image: url("~/images/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.content-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 16;
+    margin: 16;
+    padding: 16;
+}
+
+.calendar-container {
+    background-color: white;
+    border-radius: 8;
+    padding: 16;
+    margin-top: 16;
+}
+
+.calendar-header {
+    text-align: center;
+    font-size: 12;
+    color: #6B7280;
+    padding: 8;
+}
+
+.calendar-day {
+    text-align: center;
+    padding: 8;
+    margin: 2;
+    font-size: 14;
+    min-width: 32;
+    min-height: 32;
+    border-radius: 4;
+}
+
+.calendar-day.empty-day {
+    color: transparent;
+}
+
+.service-day {
+    background-color: #7C3AED;
+    color: white;
+    font-weight: bold;
+}
+
+.calendar-nav-btn {
+    font-size: 18;
+    min-width: 40;
+    min-height: 40;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    color: #374151;
+}

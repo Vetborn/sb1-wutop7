@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="Services" class="action-bar">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" tap="onBackTap" />
+    </ActionBar>
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Label text="Size" class="font-semibold mb-2" />
+            <StackLayout class="search-container">
+                <TextField text="{{ selectedSizeLabel }}" 
+                          hint="Please select your dog size"
+                          tap="{{ onSizeTap }}"
+                          editable="false"
+                          class="input-field" />
+                
+                <ListView items="{{ sizes }}" 
+                         itemTap="{{ onSizeSelect }}"
+                         visibility="{{ isSizeDropdownVisible ? 'visible' : 'collapsed' }}"
+                         height="200"
+                         class="dropdown">
+                    <ListView.itemTemplate>
+                        <StackLayout class="dropdown-item">
+                            <Label text="{{ label }}" 
+                                   class="{{ selected ? 'selected-text' : '' }}" />
+                        </StackLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <StackLayout visibility="{{ showXSmallServices ? 'visible' : 'collapsed' }}" class="service-list mt-4">
+                <Label text="Small Bites" class="text-lg font-bold mb-2" />
+                
+                <StackLayout class="service-item p-3 mb-2">
+                    <FlexboxLayout justifyContent="space-between" alignItems="center">
+                        <StackLayout>
+                            <Label text="The Buzz" class="font-semibold" />
+                            <Label text="Full body machine cut" class="text-gray-600" />
+                            <Label text="$45" class="text-purple-600 font-bold" />
+                        </StackLayout>
+                        <Image src="{{ hygieneSelected ? '~/images/checkbox-checked.png' : '~/images/checkbox-unchecked.png' }}"
+                               tap="{{ onHygieneSelect }}"
+                               width="24"
+                               height="24" />
+                    </FlexboxLayout>
+                </StackLayout>
+
+                <StackLayout class="service-item p-3 mb-2">
+                    <FlexboxLayout justifyContent="space-between" alignItems="center">
+                        <StackLayout>
+                            <Label text="The Shear Bliss" class="font-semibold" />
+                            <Label text="Full body machine cut" class="text-gray-600" />
+                            <Label text="$65" class="text-purple-600 font-bold" />
+                        </StackLayout>
+                        <Image src="{{ fullGroomSelected ? '~/images/checkbox-checked.png' : '~/images/checkbox-unchecked.png' }}"
+                               tap="{{ onFullGroomSelect }}"
+                               width="24"
+                               height="24" />
+                    </FlexboxLayout>
+                </StackLayout>
+
+                <Label text="Add-ons" class="text-lg font-bold mt-4 mb-2" />
+                
+                <Repeater items="{{ addons }}">
+                    <Repeater.itemTemplate>
+                        <StackLayout class="service-item p-3 mb-2">
+                            <FlexboxLayout justifyContent="space-between" alignItems="center">
+                                <StackLayout>
+                                    <Label text="{{ name }}" class="font-semibold" />
+                                    <Label text="${{ price }}" class="text-purple-600 font-bold" />
+                                </StackLayout>
+                                <Image src="{{ selected ? '~/images/checkbox-checked.png' : '~/images/checkbox-unchecked.png' }}"
+                                       tap="{{ $parents['Page'].onAddonSelect }}"
+                                       data-addon="{{ id }}"
+                                       width="24"
+                                       height="24" />
+                            </FlexboxLayout>
+                        </StackLayout>
+                    </Repeater.itemTemplate>
+                </Repeater>
+
+                <Button text="Continue" 
+                        tap="{{ onContinue }}"
+                        class="btn-primary mt-4"
+                        visibility="{{ showXSmallServices ? 'visible' : 'collapsed' }}" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="Scheduling" class="action-bar">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" tap="onBackTap" />
+    </ActionBar>
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <StackLayout class="selected-location mb-4">
+                <Label text="Your Location" class="text-sm text-gray-500 mb-1" />
+                <Label text="{{ location.name }}" class="text-lg font-semibold" textWrap="true" />
+                <Label text="{{ location.address }}" class="text-gray-600" textWrap="true" />
+            </StackLayout>
+
+            <StackLayout class="service-item p-4 mb-4">
+                <Label text="Your Apartment's Service Day" class="text-lg font-bold mb-2" />
+                <Label text="{{ assignedDay }}" class="text-xl text-purple-600 font-semibold" />
+                <Label text="of each month" class="text-gray-600" />
+            </StackLayout>
+
+            <Label text="Available Time Slots" class="text-lg font-bold mb-2" />
+            
+            <ListView items="{{ availableTimeSlots }}" class="mb-4">
+                <ListView.itemTemplate>
+                    <GridLayout columns="*, auto" class="service-item p-3">
+                        <Label col="0" text="{{ time }}" class="text-lg" />
+                        <Button col="1" 
+                                text="Select" 
+                                tap="{{ $parents['Page'].onTimeSelect }}"
+                                data-time="{{ time }}"
+                                class="{{ selected ? 'selected-button' : 'btn-secondary' }}" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+
+            <Button text="Confirm Booking" 
+                    tap="{{ onConfirmBooking }}"
+                    class="btn-primary mt-4"
+                    isEnabled="{{ selectedTime !== null }}" />
+        </StackLayout>
+    </ScrollView>
+</Page>

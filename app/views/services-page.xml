@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="Services" class="action-bar">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" tap="onBackTap" />
+    </ActionBar>
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Label text="Size" class="font-semibold mb-2" />
+            <StackLayout class="search-container">
+                <TextField text="{{ selectedSizeLabel }}" 
+                          hint="Please select your dog size"
+                          tap="{{ onSizeTap }}"
+                          editable="false"
+                          class="input-field" />
+                
+                <ListView items="{{ sizes }}" 
+                         itemTap="{{ onSizeSelect }}"
+                         visibility="{{ isSizeDropdownVisible ? 'visible' : 'collapsed' }}"
+                         height="200"
+                         class="dropdown">
+                    <ListView.itemTemplate>
+                        <StackLayout class="dropdown-item">
+                            <Label text="{{ label }}" 
+                                   class="{{ selected ? 'selected-text' : '' }}" />
+                        </StackLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </StackLayout>
+            
+            <StackLayout visibility="{{ showXSmallServices ? 'visible' : 'collapsed' }}" class="service-list mt-4">
+                <Label text="Starters" class="text-lg font-bold mb-2" />
+                
+                <GridLayout rows="auto" columns="*, auto" class="service-item p-3 mb-2" tap="{{ onStarterSelect }}"
+                           opacity="{{ starterDisabled ? '0.5' : '1' }}">
+                    <StackLayout col="0">
+                        <Label text="Small Bites Menu" class="font-semibold" />
+                        <Label text="Shower, Brushing and Blow Dry" class="text-gray-600" />
+                        <Label text="$65" class="text-purple-600 font-bold" />
+                    </StackLayout>
+                    <Label col="1" 
+                           text="{{ starterSelected ? '✓' : '' }}" 
+                           class="checkbox-label {{ starterSelected ? 'selected-text' : '' }}" />
+                </GridLayout>
+
+                <Label text="Main Course (Includes Starters: Shower, Brushing and Blow Dry)" class="text-lg font-bold mb-2" />
+                
+                <GridLayout rows="auto" columns="*, auto" class="service-item p-3 mb-2" tap="{{ onHygieneSelect }}">
+                    <StackLayout col="0">
+                        <Label text="The Buzz" class="font-semibold" />
+                        <Label text="Full body machine cut" class="text-gray-600" />
+                        <Label text="Includes Small Bites Menu (Shower, Brushing and Blow Dry)" class="text-sm text-purple-600" />
+                        <Label text="$75" class="text-purple-600 font-bold mt-1" />
+                    </StackLayout>
+                    <Label col="1" 
+                           text="{{ hygieneSelected ? '✓' : '' }}" 
+                           class="checkbox-label {{ hygieneSelected ? 'selected-text' : '' }}" />
+                </GridLayout>
+
+                <GridLayout rows="auto" columns="*, auto" class="service-item p-3 mb-2" tap="{{ onFullGroomSelect }}">
+                    <StackLayout col="0">
+                        <Label text="The Shear Bliss" class="font-semibold" />
+                        <Label text="Full body scissor cut" class="text-gray-600" />
+                        <Label text="Includes Small Bites Menu (Shower, Brushing and Blow Dry)" class="text-sm text-purple-600" />
+                        <Label text="$85" class="text-purple-600 font-bold mt-1" />
+                    </StackLayout>
+                    <Label col="1" 
+                           text="{{ fullGroomSelected ? '✓' : '' }}" 
+                           class="checkbox-label {{ fullGroomSelected ? 'selected-text' : '' }}" />
+                </GridLayout>
+
+                <Label text="Happy Hour A La Carte" class="text-lg font-bold mt-4 mb-2" />
+                
+                <GridLayout rows="auto, auto, auto, auto, auto, auto" columns="*">
+                    <GridLayout row="0" rows="auto" columns="*, auto" class="service-item p-3" tap="{{ onAddonSelect }}" data-addon-id="anal">
+                        <StackLayout col="0">
+                            <Label text="Anal Gland Cleaning" class="font-semibold" />
+                            <Label text="$15" class="text-purple-600 font-bold" />
+                        </StackLayout>
+                        <Label col="1" 
+                               text="{{ addons[0].selected ? '✓' : '' }}" 
+                               class="checkbox-label {{ addons[0].selected ? 'selected-text' : '' }}" />
+                    </GridLayout>
+
+                    <GridLayout row="1" rows="auto" columns="*, auto" class="service-item p-3" tap="{{ onAddonSelect }}" data-addon-id="teeth">
+                        <StackLayout col="0">
+                            <Label text="Teeth Brushing" class="font-semibold" />
+                            <Label text="$10" class="text-purple-600 font-bold" />
+                        </StackLayout>
+                        <Label col="1" 
+                               text="{{ addons[1].selected ? '✓' : '' }}" 
+                               class="checkbox-label {{ addons[1].selected ? 'selected-text' : '' }}" />
+                    </GridLayout>
+
+                    <GridLayout row="2" rows="auto" columns="*, auto" class="service-item p-3" tap="{{ onAddonSelect }}" data-addon-id="scaling">
+                        <StackLayout col="0">
+                            <Label text="Teeth Scaling" class="font-semibold" />
+                            <Label text="$25" class="text-purple-600 font-bold" />
+                        </StackLayout>
+                        <Label col="1" 
+                               text="{{ addons[2].selected ? '✓' : '' }}" 
+                               class="checkbox-label {{ addons[2].selected ? 'selected-text' : '' }}" />
+                    </GridLayout>
+
+                    <GridLayout row="3" rows="auto" columns="*, auto" class="service-item p-3" tap="{{ onAddonSelect }}" data-addon-id="nail">
+                        <StackLayout col="0">
+                            <Label text="Nail Trim" class="font-semibold" />
+                            <Label text="$10" class="text-purple-600 font-bold" />
+                        </StackLayout>
+                        <Label col="1" 
+                               text="{{ addons[3].selected ? '✓' : '' }}" 
+                               class="checkbox-label {{ addons[3].selected ? 'selected-text' : '' }}" />
+                    </GridLayout>
+
+                    <GridLayout row="4" rows="auto" columns="*, auto" class="service-item p-3" tap="{{ onAddonSelect }}" data-addon-id="ear">
+                        <StackLayout col="0">
+                            <Label text="Ear Cleaning" class="font-semibold" />
+                            <Label text="$10" class="text-purple-600 font-bold" />
+                        </StackLayout>
+                        <Label col="1" 
+                               text="{{ addons[4].selected ? '✓' : '' }}" 
+                               class="checkbox-label {{ addons[4].selected ? 'selected-text' : '' }}" />
+                    </GridLayout>
+
+                    <GridLayout row="5" rows="auto" columns="*, auto" class="service-item p-3" tap="{{ onAddonSelect }}" data-addon-id="deshed">
+                        <StackLayout col="0">
+                            <Label text="De-Shedding Treatment" class="font-semibold" />
+                            <Label text="$15" class="text-purple-600 font-bold" />
+                        </StackLayout>
+                        <Label col="1" 
+                               text="{{ addons[5].selected ? '✓' : '' }}" 
+                               class="checkbox-label {{ addons[5].selected ? 'selected-text' : '' }}" />
+                    </GridLayout>
+                </GridLayout>
+
+                <Label text="Dessert and Treats" class="text-lg font-bold mt-4 mb-2" />
+                
+                <GridLayout rows="auto, auto, auto, auto, auto" columns="*">
+                    <GridLayout row="0" rows="auto" columns="*, auto" class="service-item p-3" tap="{{ onTreatSelect }}" data-treat-id="perfume">
+                        <StackLayout col="0">
+                            <Label text="Pet Perfume" class="font-semibold" />
+                            <Label text="$5" class="text-purple-600 font-bold" />
+                        </StackLayout>
+                        <Label col="1" 
+                               text="{{ treats[0].selected ? '✓' : '' }}" 
+                               class="checkbox-label {{ treats[0].selected ? 'selected-text' : '' }}" />
+                    </GridLayout>
+
+                    <GridLayout row="1" rows="auto" columns="*, auto" class="service-item p-3" tap="{{ onTreatSelect }}" data-treat-id="pawbalm">
+                        <StackLayout col="0">
+                            <Label text="Paw Balm Treatment" class="font-semibold" />
+                            <Label text="$10" class="text-purple-600 font-bold" />
+                        </StackLayout>
+                        <Label col="1" 
+                               text="{{ treats[1].selected ? '✓' : '' }}" 
+                               class="checkbox-label {{ treats[1].selected ? 'selected-text' : '' }}" />
+                    </GridLayout>
+
+                    <GridLayout row="2" rows="auto" columns="*, auto" class="service-item p-3" tap="{{ onTreatSelect }}" data-treat-id="conditioner">
+                        <StackLayout col="0">
+                            <Label text="Luxury Coat Conditioner" class="font-semibold" />
+                            <Label text="$10" class="text-purple-600 font-bold" />
+                        </StackLayout>
+                        <Label col="1" 
+                               text="{{ treats[2].selected ? '✓' : '' }}" 
+                               class="checkbox-label {{ treats[2].selected ? 'selected-text' : '' }}" />
+                    </GridLayout>
+
+                    <GridLayout row="3" rows="auto" columns="*, auto" class="service-item p-3" tap="{{ onTreatSelect }}" data-treat-id="polish">
+                        <StackLayout col="0">
+                            <Label text="Pet Nail Polish" class="font-semibold" />
+                            <Label text="$10" class="text-purple-600 font-bold" />
+                        </StackLayout>
+                        <Label col="1" 
+                               text="{{ treats[3].selected ? '✓' : '' }}" 
+                               class="checkbox-label {{ treats[3].selected ? 'selected-text' : '' }}" />
+                    </GridLayout>
+
+                    <GridLayout row="4" rows="auto" columns="*, auto" class="service-item p-3" tap="{{ onTreatSelect }}" data-treat-id="dyeing">
+                        <StackLayout col="0">
+                            <Label text="Partial Dyeing" class="font-semibold" />
+                            <Label text="$40" class="text-purple-600 font-bold" />
+                        </StackLayout>
+                        <Label col="1" 
+                               text="{{ treats[4].selected ? '✓' : '' }}" 
+                               class="checkbox-label {{ treats[4].selected ? 'selected-text' : '' }}" />
+                    </GridLayout>
+                </GridLayout>
+
+                <StackLayout class="service-item p-4 mt-4" visibility="{{ showServiceCode ? 'visible' : 'collapsed' }}">
+                    <Label text="Service Code" class="text-lg font-bold mb-2" />
+                    <Label text="{{ serviceCode }}" 
+                           class="text-2xl font-mono text-center p-4 bg-purple-100 rounded-lg" />
+                    <Label text="Show this code at the location" 
+                           class="text-sm text-gray-600 text-center mt-2" />
+                </StackLayout>
+
+                <Button text="Continue" 
+                        tap="{{ onContinue }}"
+                        class="btn-primary mt-4"
+                        visibility="{{ showXSmallServices ? 'visible' : 'collapsed' }}" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

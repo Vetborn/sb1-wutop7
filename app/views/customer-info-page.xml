@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="Your Information" class="action-bar">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" tap="onBackTap" />
+    </ActionBar>
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <!-- Selected Location Display -->
+            <StackLayout class="selected-Apartment mb-6">
+                <Label text="Selected Location" class="text-sm text-gray-500 mb-1" />
+                <Label text="{{ location.name }}" class="text-lg font-semibold" textWrap="true" />
+                <Label text="{{ location.address }}" class="text-gray-600" textWrap="true" />
+                
+            </StackLayout>
+
+            <!-- Building Number Field -->
+            <Label text="Building Letter/Number" class="font-semibold mb-2" />
+            <TextField text="{{ buildingNumber }}" 
+                      hint="e.g. Building B, or N/A if you don't have one"
+                      class="input-field" />
+
+            <Label text="Please enter your information (Optional)" class="text-xl font-bold mb-2" />
+            
+            <Label text="Name" class="font-semibold mb-2" />
+            <TextField text="{{ firstName }}" 
+                      hint="" 
+                      class="input-field" />
+            
+            <Label text="Last Name" class="font-semibold mb-2 mt-4" />
+            <TextField text="{{ lastName }}" 
+                      hint="" 
+                      class="input-field" />
+            
+            <Label text="Email" class="font-semibold mb-2 mt-4" />
+            <TextField text="{{ email }}" 
+                      hint=""
+                      keyboardType="email"
+                      autocorrect="false"
+                      autocapitalizationType="none"
+                      class="input-field" />
+            
+            <Label text="Phone Number" class="font-semibold mb-2 mt-4" />
+            <TextField text="{{ phoneNumber }}" 
+                      hint=""
+                      keyboardType="phone"
+                      class="input-field" />
+            
+            <Button text="Continue to Pet Details" 
+                    tap="{{ onContinue }}" 
+                    class="btn-primary"
+                    marginTop="20" />
+        </StackLayout>
+    </ScrollView>
+</Page>

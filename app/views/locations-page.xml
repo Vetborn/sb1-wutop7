@@ -1,0 +1,30 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="Location" class="action-bar" />
+    
+    <GridLayout class="page-background">
+        <StackLayout class="content-container">
+            <Label text="Please Select Your Apartment" class="text-xl font-bold mb-4" />
+            
+            <StackLayout class="search-container">
+                <TextField text="{{ searchText }}" 
+                          hint="Type to search apartments..." 
+                          textChange="{{ onSearchTextChanged }}"
+                          tap="{{ onSearchTap }}"
+                          class="input-field" />
+                
+                <ListView items="{{ filteredLocations }}" 
+                         itemTap="{{ onLocationSelect }}"
+                         visibility="{{ isDropdownVisible ? 'visible' : 'collapsed' }}"
+                         height="300"
+                         class="dropdown">
+                    <ListView.itemTemplate>
+                        <StackLayout class="dropdown-item">
+                            <Label text="{{ name }}" class="text-base font-medium" textWrap="true" />
+                            <Label text="{{ address }}" class="text-sm text-gray-500" textWrap="true" />
+                        </StackLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </GridLayout>
+</Page>
